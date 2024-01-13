@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './features/home/header/header.component';
+import { HomeComponent } from './features/home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { NavigationBarComponent } from './shared/navigation-bar/navigation-bar.component';
 import { NumberOfScenesPerCharacterVisualizationComponent } from './visualizations/number-of-scenes-per-character-visualization/number-of-scenes-per-character-visualization.component';
 import { VisualizationComponent } from './visualizations/visualization/visualization.component';
 import { NameCallingVisualizationComponent } from './visualizations/name-calling-visualization/name-calling-visualization.component';
@@ -20,12 +20,13 @@ import { ButtonGroupComponent } from './visualizations/button-group/button-group
 import { BarChartComponent } from './visualizations/bar-chart/bar-chart.component';
 import { LineChartComponent } from './visualizations/line-chart/line-chart.component';
 import { SankeyChartComponent } from './visualizations/sankey-chart/sankey-chart.component';
-import { SideBarComponent } from './side-bar/side-bar.component';
+import { SideBarComponent } from './shared/side-bar/side-bar.component';
 import { CharactersComponent } from './characters/characters.component';
-import { RomanceComponent } from './romance/romance.component';
-import { WardrobeComponent } from './wardrobe/wardrobe.component';
-import { MudersComponent } from './muders/muders.component';
-import { TimelineComponent } from './timeline/timeline.component';
+import { RomanceComponent } from './features/romance/romance.component';
+import { WardrobeComponent } from './features/wardrobe/wardrobe.component';
+import { MudersComponent } from './features/muders/muders.component';
+import { TimelineComponent } from './features/timeline/timeline.component';
+import { ForceChartComponent } from './visualizations/force-chart/force-chart.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { TimelineComponent } from './timeline/timeline.component';
     RomanceComponent,
     WardrobeComponent,
     MudersComponent,
-    TimelineComponent
+    TimelineComponent,
+    ForceChartComponent
   ],
   imports: [
     BrowserModule,

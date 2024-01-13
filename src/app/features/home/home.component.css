@@ -1,12 +1,4 @@
-@font-face {
-  font-family: "bittersweet";
-  src: url("../../assets/fonts/Bittersweet.ttf");
-}
 
-@font-face {
-  font-family: "anna";
-  src: url("../../assets/fonts/itc-anna-std.otf");
-}
 
 .container {
     text-align: center;

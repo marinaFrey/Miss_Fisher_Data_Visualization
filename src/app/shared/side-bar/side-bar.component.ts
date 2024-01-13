@@ -32,12 +32,12 @@ export class SideBarComponent implements OnInit {
       label: 'Murders',
       icon: 'fa fa-dizzy fa-fw',
       routing: '/murders'
-    },
+    }, /*
     {
       label: 'Timeline',
       icon: 'fa fa-calendar fa-fw',
       routing: '/timeline'
-    },
+    }, */
     {
       label: 'About',
       icon: 'fa fa-info-circle fa-fw',

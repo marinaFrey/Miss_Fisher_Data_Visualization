@@ -1,0 +1,19 @@
+
+.about-me {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid rgb(189, 189, 189);
+    border-radius: 8px;
+}
+
+.avatar-img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100%;
+}
+
+.about-me-content {
+    display: flex;
+    flex-direction: column;
+}

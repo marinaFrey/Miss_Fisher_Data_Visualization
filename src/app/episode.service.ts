@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import * as d3 from 'd3';
-import { Episode } from './episode';
+import { Episode } from './models/episode';
 import { PER_PERCENTAGE_OF_EPISODES } from './constants';
 import { EPISODES } from './episodeData';
 declare var $: any;

@@ -2,7 +2,7 @@
 
   <div *ngIf="graphTypeSelection != null" class="btn-group mr-1 group-button" role="group" aria-label="grouping methods">
     <button type="button" class="btn btn-secondary" [ngClass]='{"active":graphTypeSelection==0}' (click)="graphTypeSelection = 0; onChange()">Total</button>
-    <button type="button" class="btn btn-secondary" [ngClass]='{"active":graphTypeSelection==1}' (click)="graphTypeSelection = 1; onChange()">Per season</button>
+    <button *ngIf="showPerSeasonOption" type="button" class="btn btn-secondary" [ngClass]='{"active":graphTypeSelection==1}' (click)="graphTypeSelection = 1; onChange()">Per season</button>
     <button type="button" class="btn btn-secondary" [ngClass]='{"active":graphTypeSelection==2}' (click)="graphTypeSelection = 2; onChange()">Per episode</button>
   </div>
   <div *ngIf="seasonSelection != null" class="btn-group mr-2 group-button" role="group" aria-label="season selection" [ngClass]='{"hidden": graphTypeSelection == 1}'>

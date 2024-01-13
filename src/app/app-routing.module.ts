@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './features/home/home.component';
 import { CharactersComponent } from './characters/characters.component';
-import { RomanceComponent } from './romance/romance.component';
-import { WardrobeComponent } from './wardrobe/wardrobe.component';
-import { MudersComponent } from './muders/muders.component';
-import { TimelineComponent } from './timeline/timeline.component';
+import { RomanceComponent } from './features/romance/romance.component';
+import { WardrobeComponent } from './features/wardrobe/wardrobe.component';
+import { MudersComponent } from './features/muders/muders.component';
+import { TimelineComponent } from './features/timeline/timeline.component';
 import { AboutComponent } from "./about/about.component";
 
 const routes: Routes = [

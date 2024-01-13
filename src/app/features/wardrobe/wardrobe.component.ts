@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Episode } from '../episode';
-import { EpisodeService } from '../episode.service';
+import { Episode } from '../../models/episode';
+import { EpisodeService } from '../../episode.service';
 
 @Component({
   selector: 'app-wardrobe',

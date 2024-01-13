@@ -1,7 +1,10 @@
 <div class="card">
     <h5 class="card-header">Outfits</h5>
     <div class="card-body">
-        <app-button-group [selections]="[seasonSelection, graphTypeSelection, null, graphDataTypeSelection]" (selectionsChange)="seasonSelection = $event[0]; graphTypeSelection = $event[1]; graphDataTypeSelection = $event[3]; createVisualization()">
+        <app-button-group 
+            [selections]="[seasonSelection, graphTypeSelection, null, graphDataTypeSelection]" 
+            [showPerSeasonOption]="false"
+            (selectionsChange)="seasonSelection = $event[0]; graphTypeSelection = $event[1]; graphDataTypeSelection = $event[3]; createVisualization()">
         </app-button-group>
 
         <div class="row justify-content-center">

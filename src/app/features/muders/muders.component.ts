@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EpisodeService } from '../episode.service';
-import { Episode } from '../episode';
+import { Episode } from 'src/app/models/episode';
+import { EpisodeService } from 'src/app/episode.service';
 
 @Component({
   selector: 'app-muders',

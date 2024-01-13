@@ -1,4 +1,4 @@
-import { Episode, Murder, EpisodeDate, Information } from './episode';
+import { Episode, Murder, EpisodeDate, Information } from './models/episode';
 /* tslint:disable */
 export const EPISODES: Episode[] = [
     {

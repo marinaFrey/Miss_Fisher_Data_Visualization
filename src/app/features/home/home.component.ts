@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EpisodeService } from '../episode.service';
-import { Episode, Murder, EpisodeDate, Information } from '../episode';
+import { EpisodeService } from '../../episode.service';
+import { Episode, Murder, EpisodeDate, Information } from '../../models/episode';
 
 @Component({
   selector: 'app-home',

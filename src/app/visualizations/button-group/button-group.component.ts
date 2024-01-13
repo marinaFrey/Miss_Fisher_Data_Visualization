@@ -8,6 +8,8 @@ import { EventEmitter } from '@angular/core';
 })
 export class ButtonGroupComponent implements OnInit {
 
+  @Input() showPerSeasonOption: boolean = true;
+  
   seasonSelection; // 0 = all seasons 
   graphTypeSelection; // 0 = sum 1 = per season 2 = per episode
   graphStyleSelection; // 0 = line chart 1 = bar chart
