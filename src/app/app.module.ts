@@ -11,7 +11,6 @@ import { NumberOfScenesPerCharacterVisualizationComponent } from './visualizatio
 import { VisualizationComponent } from './visualizations/visualization/visualization.component';
 import { NameCallingVisualizationComponent } from './visualizations/name-calling-visualization/name-calling-visualization.component';
 import { IndulgingVisualizationComponent } from './visualizations/indulging-visualization/indulging-visualization.component';
-import { AboutComponent } from './about/about.component';
 import { OutfitsVisualizationComponent } from './visualizations/outfits-visualization/outfits-visualization.component';
 import { MurdersVisualizationComponent } from './visualizations/murders-visualization/murders-visualization.component';
 import { ClosenessVisualizationComponent } from './visualizations/closeness-visualization/closeness-visualization.component';
@@ -27,6 +26,7 @@ import { WardrobeComponent } from './features/wardrobe/wardrobe.component';
 import { MudersComponent } from './features/muders/muders.component';
 import { TimelineComponent } from './features/timeline/timeline.component';
 import { ForceChartComponent } from './visualizations/force-chart/force-chart.component';
+import { AboutComponent } from './features/about/about.component';
 
 @NgModule({
   declarations: [

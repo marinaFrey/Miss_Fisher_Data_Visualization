@@ -6,7 +6,7 @@ import { RomanceComponent } from './features/romance/romance.component';
 import { WardrobeComponent } from './features/wardrobe/wardrobe.component';
 import { MudersComponent } from './features/muders/muders.component';
 import { TimelineComponent } from './features/timeline/timeline.component';
-import { AboutComponent } from "./about/about.component";
+import { AboutComponent } from './features/about/about.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
