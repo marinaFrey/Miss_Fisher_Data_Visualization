@@ -20,13 +20,13 @@ import { BarChartComponent } from './visualizations/bar-chart/bar-chart.componen
 import { LineChartComponent } from './visualizations/line-chart/line-chart.component';
 import { SankeyChartComponent } from './visualizations/sankey-chart/sankey-chart.component';
 import { SideBarComponent } from './shared/side-bar/side-bar.component';
-import { CharactersComponent } from './characters/characters.component';
 import { RomanceComponent } from './features/romance/romance.component';
 import { WardrobeComponent } from './features/wardrobe/wardrobe.component';
 import { MudersComponent } from './features/muders/muders.component';
 import { TimelineComponent } from './features/timeline/timeline.component';
 import { ForceChartComponent } from './visualizations/force-chart/force-chart.component';
 import { AboutComponent } from './features/about/about.component';
+import { CharactersComponent } from './features/characters/characters.component';
 
 @NgModule({
   declarations: [

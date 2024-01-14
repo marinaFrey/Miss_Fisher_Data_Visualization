@@ -517,7 +517,7 @@ export class BarChart extends Visualization
 
         subBars.exit().remove();
 
-        if (imageName)
+        if (imageName !== null)
         {
             var imageGroups = this.svg.selectAll("g.img").data(data);
             imageGroups.enter().append("g").classed('img', true);

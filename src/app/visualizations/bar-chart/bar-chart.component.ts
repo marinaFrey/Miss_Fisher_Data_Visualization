@@ -76,7 +76,6 @@ export class BarChartComponent extends VisualizationComponent implements OnInit
         this.barChart.createGroupedStackedBarChart(this.parsedData, this.imageName, this.tooltipLabel);
         break;
     }
-
   }
 
   getValueCalculationFunction()

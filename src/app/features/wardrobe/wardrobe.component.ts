@@ -24,6 +24,19 @@ export class WardrobeComponent implements OnInit {
     }
   ];
 
+  outfitInfo = [
+    {
+      name: "Phryne", infos: [
+        { name: "Phryne", label: "number of outfits Phryne wears", color: "#e25b6fff", hightlight: "#c14b5dff", isShowing: true }
+      ]
+    },
+    {
+      name: "Jack", infos: [
+        { name: "Jack", label: "number of outfits Jack wears", color: "#4b76e4ff", hightlight: "#3b62c7ff", isShowing: true }
+      ]
+    }
+  ]
+
   constructor(private episodeService: EpisodeService) { }
 
   ngOnInit()
