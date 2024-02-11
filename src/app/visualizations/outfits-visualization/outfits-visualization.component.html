@@ -2,7 +2,7 @@
     <h5 class="card-header">Jack's Neckties</h5>
     <div class="card-body">
         <app-button-group 
-            [selections]="[seasonSelection, graphTypeSelection, null, graphDataTypeSelection]" 
+            [selections]="[seasonSelection, graphTypeSelection, undefined, graphDataTypeSelection]" 
             [showPerSeasonOption]="false"
             (selectionsChange)="seasonSelection = $event[0]; graphTypeSelection = $event[1]; graphDataTypeSelection = $event[3]; createVisualization()">
         </app-button-group>

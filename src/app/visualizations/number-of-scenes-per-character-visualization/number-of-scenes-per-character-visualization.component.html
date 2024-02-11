@@ -8,7 +8,7 @@
     </h5>
 
     <div class="card-body">
-        <app-button-group [selections]="[seasonSelection, graphTypeSelection, graphStyleSelection, null]" (selectionsChange)="seasonSelection = $event[0]; graphTypeSelection = $event[1]; graphStyleSelection = $event[2]; createVisualization()">
+        <app-button-group [selections]="[seasonSelection, graphTypeSelection, graphStyleSelection, undefined]" (selectionsChange)="seasonSelection = $event[0]; graphTypeSelection = $event[1]; graphStyleSelection = $event[2]; createVisualization()">
         </app-button-group>
 
         <div class="row justify-content-center">

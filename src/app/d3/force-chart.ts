@@ -38,20 +38,20 @@ export class ForceChart extends Visualization
             .attr('data-toggle', 'tooltip')
             .attr('data-original-title', function (d) { return d.name })
             .call(d3.drag()
-                .on("start", (d) =>
+                .on("start", (event, d) =>
                 {
-                    if (!d3.event.active) this.force.alphaTarget(0.1).restart();
+                    if (!event.active) this.force.alphaTarget(0.1).restart();
                     d.fx = d.x;
                     d.fy = d.y;
                 })
-                .on("drag", (d) =>
+                .on("drag", (event, d) =>
                 {
-                    d.fx = d3.event.x;
-                    d.fy = d3.event.y;
+                    d.fx = event.x;
+                    d.fy = event.y;
                 })
-                .on("end", (d) =>
+                .on("end", (event, d) =>
                 {
-                    if (!d3.event.active) this.force.alphaTarget(0.1);
+                    if (!event.active) this.force.alphaTarget(0.1);
                     d.fx = null;
                     d.fy = null;
                 }));

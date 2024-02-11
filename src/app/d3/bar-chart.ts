@@ -5,7 +5,7 @@ export class BarChart extends Visualization
 {
     constructor(svgName: string, width?: number, height?: number)
     {
-        super(svgName, width, height);
+        super(svgName, width ?? 100, height ?? 100);
     }
 
     createBarChart(data, propertyName, yAxisLabel, yAxisSuffix, maxYAxisValue)
@@ -46,18 +46,18 @@ export class BarChart extends Visualization
             .append("rect") // Add a new rect for each new elements
             .attr("x", function (d) { return pointer.xScale(d[propertyName]); })
             .attr("y", function (d) { return pointer.height - pointer.margin.bottom; })
-            .on("mouseover", function (d, i) { d3.select(this).attr("fill", d.highlightColor); })
-            .on("mouseout", function (d, i) { d3.select(this).attr("fill", d.color); })
+            .on("mouseover", function (this: any,d, i) { d3.select(this).attr("fill", i.highlightColor); })
+            .on("mouseout", function (this: any,d, i) { d3.select(this).attr("fill", i.color); })
             .merge(rects) // get the already existing elements as well
             .transition() // and apply changes to all of them
             .duration(this.transitionSpeed)
             .attr("class", "bar")
-            .on('start', function (d) { d3.select(this).attr("fill", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("fill", d.color) })
             .attr("x", function (d) { return pointer.xScale(d[propertyName]); })
             .attr("y", function (d) { return pointer.yScale(Number(d.value)); })
             .attr("width", this.xScale.bandwidth())
             .attr("height", function (d) { return pointer.height - pointer.yScale(Number(d.value)) - pointer.margin.bottom; })
-            .on('end', function ()
+            .on('end', function (this: any)
             {
 
                 d3.select(this)
@@ -93,7 +93,7 @@ export class BarChart extends Visualization
             .attr("height", function (d) { return pointer.calculateImageInfo(pointer.xScale.bandwidth(), pointer.maxPhotoSize, pointer.xScale.bandwidth(), pointer) * 1.3; })
             .attr("x", function (d) { return pointer.calculateImageInfo(pointer.xScale(d[propertyName]), pointer.xScale(d[propertyName]) + pointer.xScale.bandwidth() / 2 - pointer.maxPhotoSize / 2, pointer.xScale.bandwidth(), pointer); })
             .attr("y", function (d) { return pointer.calculateImageInfo(pointer.yScale(Number(d.value)) - pointer.xScale.bandwidth(), pointer.yScale(Number(d.value)) - pointer.maxPhotoSize, pointer.xScale.bandwidth(), pointer) - imagePadding; })
-            .on('end', function ()
+            .on('end', function (this: any)
             {
                 d3.select(this)
                     .attr("data-original-title", function (d) { var text = d[propertyName] + ": " + Math.round(d.value) + yAxisSuffix; return text; });
@@ -149,13 +149,13 @@ export class BarChart extends Visualization
             .attr("width", x1.bandwidth())
             .attr("y", function (d) { return pointer.height - pointer.margin.bottom; })
             .attr("x", function (d) { return pointer.xScale(d.name) + x1(d.character); })
-            .on("mouseover", function (d, i) { d3.select(this).attr("fill", d.highlightColor); })
-            .on("mouseout", function (d, i) { d3.select(this).attr("fill", d.color); })
+            .on("mouseover", function (this: any,d, i) { d3.select(this).attr("fill", i.highlightColor); })
+            .on("mouseout", function (this: any,d, i) { d3.select(this).attr("fill", i.color); })
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("fill", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("fill", d.color) })
             .attr("y", function (d) { return pointer.yScale(d.value); })
             .attr("height", function (d) { return pointer.height - pointer.yScale(Number(d.value)) - pointer.margin.bottom; })
-            .on('end', function ()
+            .on('end', function (this: any)
             {
                 d3.select(this).attr("data-original-title", function (d)
                 {
@@ -172,12 +172,12 @@ export class BarChart extends Visualization
 
         bars
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("fill", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("fill", d.color) })
             .attr("x", function (d) { return pointer.xScale(d.name) + x1(d.character); })
             .attr("y", function (d) { return pointer.yScale(d.value); })
             .attr("width", x1.bandwidth())
             .attr("height", function (d) { return pointer.height - pointer.yScale(Number(d.value)) - pointer.margin.bottom; })
-            .on('end', function ()
+            .on('end', function (this: any)
             {
                 d3.select(this).attr("data-original-title", function (d)
                 {
@@ -215,7 +215,7 @@ export class BarChart extends Visualization
             .attr("height", function (d) { return pointer.calculateImageInfo(x1.bandwidth(), pointer.maxPhotoSize, x1.bandwidth(), pointer); })
             .attr("x", function (d) { return pointer.calculateImageInfo(pointer.xScale(d.name) + x1(d.character) + x1.bandwidth() / 2 - x1.bandwidth() / 2, pointer.xScale(d.name) + x1(d.character) + x1.bandwidth() / 2 - pointer.maxPhotoSize / 2, x1.bandwidth(), pointer); })
             .attr("y", function (d) { return pointer.calculateImageInfo(pointer.yScale(Number(d.value)) - x1.bandwidth(), pointer.yScale(Number(d.value)) - pointer.maxPhotoSize, x1.bandwidth(), pointer); })
-            .on('end', function ()
+            .on('end', function (this: any)
             {
                 d3.select(this).attr("data-original-title", function (d)
                 {
@@ -249,7 +249,7 @@ export class BarChart extends Visualization
         this.svg.selectAll(".line").remove();
 
 
-        var yPoints = []
+        var yPoints: any[] = []
         for (var i = 0; i < data.length; i++)
         {
             yPoints[data[i].name] = [];
@@ -324,16 +324,16 @@ export class BarChart extends Visualization
             .attr("width", x1.bandwidth())
             .attr("y", function (d) { return pointer.height - pointer.margin.bottom; })
             .attr("x", function (d) { return pointer.xScale(d.name) + x1(d.character); })
-            .on("mouseover", function (d, i) { d3.select(this).attr("fill", d.highlightColor); })
-            .on("mouseout", function (d, i) { d3.select(this).attr("fill", d.color); })
+            .on("mouseover", function (this: any,d, i) {d3.select(this).attr("fill", i.highlightColor); })
+            .on("mouseout", function (this: any,d, i) { d3.select(this).attr("fill", i.color); })
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("fill", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("fill", d.color) })
             .attr("y", function (d, i)
             {
                 return pointer.yScale(yPoints[d.name][d.character][i].y);
             })
             .attr("height", function (d, i) { return yPoints[d.name][d.character][i].height; })
-            .on('end', function ()
+            .on('end', function (this: any,)
             {
                 d3.select(this)
                     .attr("data-original-title", function (d)
@@ -351,7 +351,7 @@ export class BarChart extends Visualization
 
         subBars
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("fill", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("fill", d.color) })
             .attr("x", function (d) { return pointer.xScale(d.name) + x1(d.character); })
             .attr("y", function (d, i)
             {
@@ -359,7 +359,7 @@ export class BarChart extends Visualization
             })
             .attr("height", function (d, i) { return yPoints[d.name][d.character][i].height; })
             .attr("width", x1.bandwidth())
-            .on('end', function ()
+            .on('end', function (this: any,)
             {
                 d3.select(this)
                     .attr("data-original-title", function (d)
@@ -391,7 +391,7 @@ export class BarChart extends Visualization
         this.svg.selectAll(".line").remove();
 
 
-        var yPoints = []
+        var yPoints: any[] = []
         for (var i = 0; i < data.length; i++)
         {
             yPoints[data[i].name] = [];
@@ -466,16 +466,16 @@ export class BarChart extends Visualization
             .attr("width", x1.bandwidth())
             .attr("y", function (d) { return pointer.height - pointer.margin.bottom; })
             .attr("x", function (d) { return pointer.xScale(d.name) + x1(d.character); })
-            .on("mouseover", function (d, i) { d3.select(this).attr("fill", d.highlightColor); })
-            .on("mouseout", function (d, i) { d3.select(this).attr("fill", d.color); })
+            .on("mouseover", function (this: any,d, i) { d3.select(this).attr("fill", i.highlightColor); })
+            .on("mouseout", function (this: any,d, i) { d3.select(this).attr("fill", i.color); })
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("fill", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("fill", d.color) })
             .attr("y", function (d, i)
             {
                 return pointer.yScale(yPoints[d.name][d.character][i].y);
             })
             .attr("height", function (d, i) { return yPoints[d.name][d.character][i].height; })
-            .on('end', function ()
+            .on('end', function (this: any)
             {
                 d3.select(this)
                     .attr("data-original-title", function (d)
@@ -493,7 +493,7 @@ export class BarChart extends Visualization
 
         subBars
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("fill", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("fill", d.color) })
             .attr("x", function (d) { return pointer.xScale(d.name) + x1(d.character); })
             .attr("y", function (d, i)
             {
@@ -501,7 +501,7 @@ export class BarChart extends Visualization
             })
             .attr("height", function (d, i) { return yPoints[d.name][d.character][i].height; })
             .attr("width", x1.bandwidth())
-            .on('end', function ()
+            .on('end', function (this: any)
             {
                 d3.select(this)
                     .attr("data-original-title", function (d)
@@ -536,11 +536,11 @@ export class BarChart extends Visualization
                 .duration(this.transitionSpeed)
                 .attr("class", "img")
                 .attr("xlink:href", function (d) { return "../../../assets/images/" + d.name + imageName + ".png"; })
-                .attr("opacity", function (d) { if (yPoints[d.parent][d.name][yPoints[d.parent][d.name].length - 1].y > 0 && (pointer.minPhotoSize <= pointer.xScale.bandwidth())) return 1; else return 0 })
+                .attr("opacity", function (d) { if (yPoints[d.parent][d.name][yPoints[d.parent][d.name]?.length - 1].y > 0 && (pointer.minPhotoSize <= pointer.xScale.bandwidth())) return 1; else return 0 })
                 .attr("width", function (d) { return pointer.calculateImageInfo(x1.bandwidth(), pointer.maxPhotoSize, x1.bandwidth(), pointer); })
                 .attr("height", function (d) { return pointer.calculateImageInfo(x1.bandwidth(), pointer.maxPhotoSize, x1.bandwidth(), pointer); })
                 .attr("x", function (d) { return pointer.calculateImageInfo(pointer.xScale(d.parent) + x1(d.name) + x1.bandwidth() / 2 - x1.bandwidth() / 2, pointer.xScale(d.parent) + x1(d.name) + x1.bandwidth() / 2 - pointer.maxPhotoSize / 2, x1.bandwidth(), pointer); })
-                .attr("y", function (d) { return pointer.calculateImageInfo(pointer.yScale(yPoints[d.parent][d.name][yPoints[d.parent][d.name].length - 1].y) - x1.bandwidth(), pointer.yScale(yPoints[d.parent][d.name][yPoints[d.parent][d.name].length - 1].y) - pointer.maxPhotoSize, x1.bandwidth(), pointer); })
+                .attr("y", function (d) { return pointer.calculateImageInfo(pointer.yScale(yPoints[d.parent][d.name][yPoints[d.parent][d.name]?.length - 1].y) - x1.bandwidth(), pointer.yScale(yPoints[d.parent][d.name][yPoints[d.parent][d.name].length - 1].y) - pointer.maxPhotoSize, x1.bandwidth(), pointer); })
                 ;
 
             images.exit().remove();
@@ -608,7 +608,7 @@ export class BarChart extends Visualization
             .attr("height", imageHeight)
             .attr("x", (d) => this.xScale(d.name))
             .attr("y", (d, i) => this.height - this.margin.bottom - i * imageHeight - imageHeight)
-            .on('end', function (d)
+            .on('end', function (this: any, d)
             {
                 d3.select(this)
                     .attr("data-original-title", d.label );

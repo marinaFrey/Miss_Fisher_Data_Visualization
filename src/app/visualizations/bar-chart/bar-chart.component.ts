@@ -12,26 +12,26 @@ import { BarChart } from 'src/app/d3/bar-chart';
 export class BarChartComponent extends VisualizationComponent implements OnInit
 {
 
-  @Input() title: string;
-  @Input() svgName: string;
+  @Input() title!: string;
+  @Input() override svgName!: string;
   @Input() parsingInfo: any;
-  @Input() variables: string[];
+  @Input() variables!: string[];
 
   @Input() valueCalculationExtraParameter: any = null;
   @Input() width: number = 500;
   @Input() height: number = 300;
   @Input() label: string = 'label';
-  @Input() imageName: string = null;
+  @Input() imageName: string = '';
   @Input() tooltipLabel: string = ' appearance(s)';
 
-  barChart: BarChart;
+  barChart!: BarChart;
 
   constructor(private episodeService: EpisodeService)
   {
     super();
   }
 
-  ngOnInit(): void
+  override ngOnInit(): void
   {
     this.create();
   }
@@ -58,22 +58,22 @@ export class BarChartComponent extends VisualizationComponent implements OnInit
       case TOTAL:
         this.parsedData = this.episodeService.parseTotalData(this.episodes, this.parsingInfo, this.variables, this.label, this.getValueCalculationFunction(), this.valueCalculationExtraParameter, this.seasonSelection);
         this.parsedData = this.episodeService.reorderData(this.parsedData, this.parsingInfo);
-        this.barChart.createGroupedStackedBarChart(this.parsedData, this.imageName, this.tooltipLabel);
+        this.barChart.createGroupedStackedBarChart(this.parsedData, this.imageName.length ? this.imageName : null, this.tooltipLabel);
         break;
 
       case PER_SEASON:
         this.parsedData = this.episodeService.parseSeasonData(this.episodes, this.parsingInfo, this.variables, this.label, this.getValueCalculationFunction(), this.valueCalculationExtraParameter, this.graphDataTypeSelection);
         this.parsedData = this.episodeService.reorderData(this.parsedData, this.parsingInfo);
         if (this.graphDataTypeSelection == PER_NUMBER_OF_EPISODES)
-          this.barChart.createGroupedStackedBarChart(this.parsedData, this.imageName, this.tooltipLabel);
+          this.barChart.createGroupedStackedBarChart(this.parsedData, this.imageName.length ? this.imageName : null, this.tooltipLabel);
         else
-          this.barChart.createGroupedStackedBarChart(this.parsedData, this.imageName, this.tooltipLabel + ' per episode');
+          this.barChart.createGroupedStackedBarChart(this.parsedData, this.imageName.length ? this.imageName : null, this.tooltipLabel + ' per episode');
         break;
 
       case PER_EPISODE:
         this.parsedData = this.episodeService.parseEpisodicData(this.episodes, this.seasonSelection, this.parsingInfo, this.variables, this.label, this.getValueCalculationFunction(), this.valueCalculationExtraParameter, "stacked");
         this.parsedData = this.episodeService.reorderData(this.parsedData, this.parsingInfo);
-        this.barChart.createGroupedStackedBarChart(this.parsedData, this.imageName, this.tooltipLabel);
+        this.barChart.createGroupedStackedBarChart(this.parsedData, this.imageName.length ? this.imageName : null, this.tooltipLabel);
         break;
     }
   }
@@ -86,16 +86,17 @@ export class BarChartComponent extends VisualizationComponent implements OnInit
     }
     else
     {
-      return value => value;
+      return (value: any) => value;
     }
   }
 
-  calculatePercentageOfScenes(value, extraInfo, episode)
+  calculatePercentageOfScenes(value: number, extraInfo: string | number, episode: { [x: string]: number; })
   {
     if (episode[extraInfo]) 
     {
       return Math.round((value * 100) / episode[extraInfo]);
     }
+    else return 0;
   }
 
 }

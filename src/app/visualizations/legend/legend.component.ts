@@ -8,7 +8,7 @@ import { EventEmitter } from '@angular/core';
 })
 export class LegendComponent implements OnInit {
 
-  @Input() charactersInfo;
+  @Input() charactersInfo! :any;
   @Output() charactersInfoChange = new EventEmitter();
   selectAll = true;
 

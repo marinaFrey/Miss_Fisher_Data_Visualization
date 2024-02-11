@@ -1,7 +1,7 @@
 <div class="card">
     <h5 class="card-header">{{title}}</h5>
     <div class="card-body">
-        <app-button-group [selections]="[seasonSelection, graphTypeSelection, null, graphDataTypeSelection]"
+        <app-button-group [selections]="[seasonSelection, graphTypeSelection, undefined, graphDataTypeSelection]"
             (selectionsChange)="seasonSelection = $event[0]; graphTypeSelection = $event[1]; graphDataTypeSelection = $event[3]; createVisualization()">
         </app-button-group>
 

@@ -1,7 +1,7 @@
 <div class="card">
   <h5 class="card-header">Murders</h5>
   <div class="card-body">
-    <app-button-group [selections]="[seasonSelection, null, null, null]"
+    <app-button-group [selections]="[seasonSelection, undefined, undefined, undefined]"
       (selectionsChange)="seasonSelection = $event[0]; createVisualization()">
     </app-button-group>
 

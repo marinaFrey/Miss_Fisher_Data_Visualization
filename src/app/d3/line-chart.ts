@@ -5,7 +5,7 @@ export class LineChart extends Visualization
 {
     constructor(svgName: string, width?: number, height?: number)
     {
-        super(svgName, width, height);
+        super(svgName, width ?? 100, height ?? 100);
     }
 
 
@@ -52,19 +52,19 @@ export class LineChart extends Visualization
             .attr("fill", "none")
             .attr("stroke", function (d) { return d.color })
             .attr("stroke-width", 2)
-            .attr("stroke-dasharray", function ()
+            .attr("stroke-dasharray", function (this: any,)
             {
                 return this.getTotalLength();
             })
             .attr("stroke-dashoffset", 0)
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("stroke", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("stroke", d.color) })
             .attr("d", function (d) { return line(d.episodes) })
             .attr("stroke-dashoffset", 0);
 
         lines
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("stroke", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("stroke", d.color) })
             .attr("d", function (d) { return line(d.episodes) });
 
         lines.exit().remove();
@@ -83,21 +83,21 @@ export class LineChart extends Visualization
             .attr("cx", function (d, i) { return Number(pointer.xScale(d.name) + pointer.xScale.bandwidth() / 2); })
             .attr("cy", function (d) { return pointer.height - pointer.margin.bottom })
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("fill", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("fill", d.color) })
             .attr("cx", function (d, i) { return Number(pointer.xScale(d.name) + pointer.xScale.bandwidth() / 2); })
             .attr("cy", function (d) { return pointer.yScale(d.value) })
-            .on('end', function ()
+            .on('end', function (this: any,)
             {
                 pointer.createTooltip(this, 'character', "%");
             });
 
         circles
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("fill", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("fill", d.color) })
             .attr("cx", function (d, i) { return Number(pointer.xScale(d.name) + pointer.xScale.bandwidth() / 2); })
             .attr("cy", function (d) { return pointer.yScale(d.value) })
             .attr("r", 2)
-            .on('end', function ()
+            .on('end', function (this: any,)
             {
                 pointer.setTooltipText(this, 'character', "%");
             });
@@ -144,19 +144,19 @@ export class LineChart extends Visualization
             .attr("fill", "none")
             .attr("stroke", function (d) { return d.color })
             .attr("stroke-width", 2)
-            .attr("stroke-dasharray", function ()
+            .attr("stroke-dasharray", function (this: any,)
             {
                 return this.getTotalLength();
             })
             .attr("stroke-dashoffset", 0)
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("stroke", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("stroke", d.color) })
             .attr("d", function (d) { console.log(d); return line(d.episodes) })
             .attr("stroke-dashoffset", 0);
 
         lines
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("stroke", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("stroke", d.color) })
             .attr("d", function (d) { return line(d.episodes) });
 
         lines.exit().remove();
@@ -175,21 +175,21 @@ export class LineChart extends Visualization
             .attr("cx", function (d, i) { return Number(pointer.xScale(d.name) + pointer.xScale.bandwidth() / 2); })
             .attr("cy", function (d) { return pointer.height - pointer.margin.bottom })
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("fill", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("fill", d.color) })
             .attr("cx", function (d, i) { return Number(pointer.xScale(d.name) + pointer.xScale.bandwidth() / 2); })
             .attr("cy", function (d) { return pointer.yScale(d.value) })
-            .on('end', function ()
+            .on('end', function (this: any,)
             {
                 pointer.createTooltip(this, 'character', "%");
             });
 
         circles
             .transition().duration(this.transitionSpeed)
-            .on('start', function (d) { d3.select(this).attr("fill", d.color) })
+            .on('start', function (this: any,d) { d3.select(this).attr("fill", d.color) })
             .attr("cx", function (d, i) { return Number(pointer.xScale(d.name) + pointer.xScale.bandwidth() / 2); })
             .attr("cy", function (d) { return pointer.yScale(d.value) })
             .attr("r", 2)
-            .on('end', function ()
+            .on('end', function (this: any,)
             {
                 pointer.setTooltipText(this, 'character', "%");
             });

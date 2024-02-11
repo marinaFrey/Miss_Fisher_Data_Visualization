@@ -13,7 +13,7 @@ export class SankeyChartComponent implements OnInit, OnChanges
   @Input() colorInfo: any;
   @Input() svgName: any;
 
-  sankeyChart: SankeyChart;
+  sankeyChart!: SankeyChart;
 
   constructor() { }
 

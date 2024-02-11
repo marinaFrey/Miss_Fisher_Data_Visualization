@@ -11,9 +11,8 @@ import { BarChart } from 'src/app/d3/bar-chart';
 })
 export class NameCallingVisualizationComponent extends VisualizationComponent implements OnInit {
 
-  parsedData;
   selectAll = true;
-  barChart: BarChart;
+  barChart!: BarChart;
   charactersInfo = [
     {
       name: "Jack", infos: [
@@ -36,7 +35,7 @@ export class NameCallingVisualizationComponent extends VisualizationComponent im
     super("#nameCallingViz");
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.create();
   }
 
@@ -57,13 +56,13 @@ export class NameCallingVisualizationComponent extends VisualizationComponent im
 
     switch (this.graphTypeSelection) {
       case TOTAL:
-        this.parsedData = this.episodeService.parseTotalData(this.episodes, this.charactersInfo, ['nameCalling'], "label", function (value) { return value; }, null, this.seasonSelection);
+        this.parsedData = this.episodeService.parseTotalData(this.episodes, this.charactersInfo, ['nameCalling'], "label", function (value: any) { return value; }, null, this.seasonSelection);
         this.parsedData = this.episodeService.reorderData(this.parsedData, this.charactersInfo);
         this.barChart.createGroupedStackedBarChart(this.parsedData, "Calling", " appearance(s)");
         break;
 
       case PER_SEASON:
-        this.parsedData = this.episodeService.parseSeasonData(this.episodes,this.charactersInfo, ['nameCalling'], "label", function(value){return value;}, null, this.graphDataTypeSelection);
+        this.parsedData = this.episodeService.parseSeasonData(this.episodes,this.charactersInfo, ['nameCalling'], "label", function(value :any){return value;}, null, this.graphDataTypeSelection);
         this.parsedData = this.episodeService.reorderData(this.parsedData,this.charactersInfo);
         if (this.graphDataTypeSelection == PER_NUMBER_OF_EPISODES)
           this.barChart.createGroupedStackedBarChart(this.parsedData, "Calling", " appearance(s)");
@@ -72,7 +71,7 @@ export class NameCallingVisualizationComponent extends VisualizationComponent im
         break;
 
       case PER_EPISODE:
-        this.parsedData = this.episodeService.parseEpisodicData(this.episodes, this.seasonSelection, this.charactersInfo, ['nameCalling'], "label", function(value){return value;}, null, "stacked");
+        this.parsedData = this.episodeService.parseEpisodicData(this.episodes, this.seasonSelection, this.charactersInfo, ['nameCalling'], "label", function(value: any){return value;}, null, "stacked");
         this.parsedData = this.episodeService.reorderData(this.parsedData,this.charactersInfo);
         this.barChart.createGroupedStackedBarChart(this.parsedData, "Calling", " appearance(s)");
         break;
@@ -89,13 +88,13 @@ export class NameCallingVisualizationComponent extends VisualizationComponent im
 
   reorderData() {
     var pointer = this;
-    var result = [];
+    var result : any[] = [];
     for (var i = 0; i < this.parsedData.length; i++) {
       for (var j = 0; j < this.parsedData[i].characters.length; j++) {
         var result = [];
         var index = this.charactersInfo.map(function (e) { return e.name; }).indexOf(this.parsedData[i].characters[j].name);
         this.charactersInfo[index].infos.forEach(function (item) {
-          pointer.parsedData[i].characters[j].infos.forEach(function (character) {
+          pointer.parsedData[i].characters[j].infos.forEach(function (character :any) {
             if (item.label == character.label)
               result.push(character);
           })

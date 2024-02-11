@@ -6,7 +6,7 @@ export class SankeyChart extends Visualization
 {
     constructor(svgName: string, width?: number, height?: number)
     {
-        super(svgName, width, height);
+        super(svgName, width ?? 100, height ?? 100);
     }
 
     createSankeyChart(data, color)
@@ -48,13 +48,13 @@ export class SankeyChart extends Visualization
             .attr("x", function (d) { return d.x0; })
             .attr("y", function (d) { return d.y0; })
             .attr("width", nodeWidth)
-            .on("mouseover", function (d, i) { d3.select(this).attr("fill", color[d.name]); })
-            .on("mouseout", function (d, i) { d3.select(this).attr("fill", color[d.name]); })
+            .on("mouseover", function (this: any,d, i) { d3.select(this).attr("fill", color[d.name]); })
+            .on("mouseout", function (this: any,d, i) { d3.select(this).attr("fill", color[d.name]); })
             .merge(rects) // get the already existing elements as well
             .transition() // and apply changes to all of them
             .duration(this.transitionSpeed)
             .attr("class", "bar")
-            .on('start', function (d) { d3.select(this).attr("fill", color[d.name]) })
+            .on('start', function (this: any,d) { d3.select(this).attr("fill", color[d.name]) })
             .attr("x", function (d) { return d.x0; })
             .attr("y", function (d) { return d.y0; })
             .attr("width", nodeWidth)

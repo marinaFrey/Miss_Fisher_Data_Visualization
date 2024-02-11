@@ -3,7 +3,6 @@ import { VisualizationComponent } from '../visualization/visualization.component
 import { EpisodeService } from '../../episode.service';
 import { TOTAL, PER_SEASON, PER_EPISODE, LINE_CHART, BAR_CHART } from '../../constants';
 /* tslint:disable */
-import * as d3 from "d3";
 import { BarChart } from 'src/app/d3/bar-chart';
 import { LineChart } from 'src/app/d3/line-chart';
 declare var $: any;
@@ -15,10 +14,9 @@ declare var $: any;
 })
 export class NumberOfScenesPerCharacterVisualizationComponent extends VisualizationComponent implements OnInit {
 
-  parsedData;
-  barChart: BarChart;
-  lineChart: LineChart;
-  charactersInfo = [
+  barChart!: BarChart;
+  lineChart!: LineChart;
+  charactersInfo: any[] = [
     { name: "Phryne", color: "#e25b6fff", hightlight: "#be495aff", isShowing: true },
     { name: "Jack", color: "#4b76e4ff", hightlight: "#415a9eff", isShowing: true },
     { name: "Dot", color: "#f8b76eff", hightlight: "#c68f52ff", isShowing: true },
@@ -35,7 +33,7 @@ export class NumberOfScenesPerCharacterVisualizationComponent extends Visualizat
     super("#viz");
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.create();
   }
 
@@ -98,10 +96,10 @@ export class NumberOfScenesPerCharacterVisualizationComponent extends Visualizat
     if(this.parsedData.length == 0)
       return;
     var pointer = this;
-    var result = [];
+    var result: any[] = [];
     if (!this.parsedData[0].characters) {
       this.charactersInfo.forEach(function (key) {
-        pointer.parsedData.forEach(function (character) {
+        pointer.parsedData.forEach(function (character : any) {
           if (key.name == character.character)
             result.push(character);
         })
@@ -113,7 +111,7 @@ export class NumberOfScenesPerCharacterVisualizationComponent extends Visualizat
       for (var i = 0; i < this.parsedData.length; i++) {
         var result = [];
         this.charactersInfo.forEach(function (key) {    
-          pointer.parsedData[i].characters.forEach(function (character) {
+          pointer.parsedData[i].characters.forEach(function (character: any) {
             if (key.name == character.character)
               result.push(character);
           })
@@ -133,8 +131,8 @@ export class NumberOfScenesPerCharacterVisualizationComponent extends Visualizat
       }
     }
 
-    var parsedData = [];
-    data.forEach(function (item) {
+    var parsedData: any[] = [];
+    data.forEach(function (item: any) {
       item.value = Math.round(item.value);
       parsedData.push(item);
     });
@@ -156,11 +154,11 @@ export class NumberOfScenesPerCharacterVisualizationComponent extends Visualizat
       numberOfEpisodesPerSeason[this.episodes[i].season - 1]++;
     }
 
-    var parsedData = [];
+    var parsedData : any[] = [];
     for (var j = 0; j < data.length; j++) {
       parsedData[j] = { name: data[j].name, characters: [] };
       parsedData[j].characters = [];
-      data[j].characters.forEach(function (item) {
+      data[j].characters.forEach(function (item : any) {
         parsedData[j]['characters'].push(item);
       });
     }
@@ -184,11 +182,11 @@ export class NumberOfScenesPerCharacterVisualizationComponent extends Visualizat
       }
     }
 
-    var parsedData = [];
+    var parsedData: any[] = [];
     for (var j = 0; j < data.length; j++) {
       parsedData[j] = { name: data[j].name, characters: [] };
       parsedData[j].characters = [];
-      data[j].characters.forEach(function (item) {
+      data[j].characters.forEach(function (item: any) {
 
         parsedData[j]['characters'].push(item);
       });
@@ -198,9 +196,9 @@ export class NumberOfScenesPerCharacterVisualizationComponent extends Visualizat
   }
 
   parseLineData() {
-    var parsedData = [];
+    var parsedData : any[] = [];
     for (var j = 0; j < this.parsedData.length; j++) {
-      this.parsedData[j].characters.forEach(function (item, index) {
+      this.parsedData[j].characters.forEach(function (item: any, index: any) {
         if (!parsedData[index])
           parsedData[index] = { character: item.character, color: item.color, highlightColor: item.highlightColor, episodes: [] };
         parsedData[index]['episodes'].push({
@@ -217,7 +215,7 @@ export class NumberOfScenesPerCharacterVisualizationComponent extends Visualizat
     this.parsedData = parsedData;
   }
 
-  pushTotalCharacterData(data, i) {
+  pushTotalCharacterData(data : any, i: any) {
     for (var j = 0; j < this.episodes[i].scenesPerCharacter.length; j++) {
       if (this.getCharacterInfo(this.episodes[i].scenesPerCharacter[j].character, "isShowing") == true) {
         if (!data[j]) {
@@ -239,7 +237,7 @@ export class NumberOfScenesPerCharacterVisualizationComponent extends Visualizat
     return data;
   }
 
-  pushSeasonCharacterData(data, i) {
+  pushSeasonCharacterData(data :any, i :any) {
     if (!data[this.episodes[i].season - 1])
       data[this.episodes[i].season - 1] = { name: "Season " + this.episodes[i].season, characters: [] };
 
@@ -265,7 +263,7 @@ export class NumberOfScenesPerCharacterVisualizationComponent extends Visualizat
     return data;
   }
 
-  pushEpisodicCharacterData(data, i, id) {
+  pushEpisodicCharacterData(data : any, i : any, id : any) {
     data[id] = { name: this.episodes[i].name, characters: [] };
 
     for (var j = 0; j < this.episodes[i].scenesPerCharacter.length; j++) {
@@ -286,12 +284,13 @@ export class NumberOfScenesPerCharacterVisualizationComponent extends Visualizat
     return data;
   }
 
-  calculateValue(value, extraInfo, episode) {
+  calculateValue(value :any, extraInfo : any, episode : any) {
     if(episode[extraInfo])
       return Math.round((value * 100) / episode[extraInfo]);
+    else return 0
   }
 
-  getCharacterInfo(characterName, info) {
+  getCharacterInfo(characterName :any, info : any) {
     for (var i = 0; i < this.charactersInfo.length; i++) {
       if (this.charactersInfo[i].name == characterName)
         return this.charactersInfo[i][info];

@@ -10,10 +10,7 @@ import { SankeyChart } from '../../d3/sankey-chart';
 })
 export class MurdersVisualizationComponent extends VisualizationComponent implements OnInit
 {
-
-
-  parsedData;
-  sankeyChart: SankeyChart;
+  sankeyChart!: SankeyChart;
   selectedTitles = ['Cause of Death', 'Victim Gender', 'Murderer Gender', 'Relationship with Victim'];
   titles = [
     { label: 'Victim Gender', variable: 'victimSex', suffix: ' victim'}, 
@@ -57,7 +54,7 @@ export class MurdersVisualizationComponent extends VisualizationComponent implem
     super("#murdersViz");
   }
 
-  ngOnInit()
+  override ngOnInit()
   {
     this.create();
   }
@@ -102,7 +99,7 @@ export class MurdersVisualizationComponent extends VisualizationComponent implem
 
   }
 
-  changeColumnData(option, position)
+  changeColumnData(option: any, position: any)
   {
     const oldOption = this.selectedTitles[position];
     this.selectedTitles[this.selectedTitles.indexOf(option.label)] = oldOption;
@@ -113,7 +110,7 @@ export class MurdersVisualizationComponent extends VisualizationComponent implem
   parseTotalData()
   {
     var links = [];
-    var nodes = [];
+    var nodes: any[] = [];
     var labels = ['source', 'target'];
     for (var i = 0; i < this.episodes.length; i++)
     {
@@ -134,17 +131,17 @@ export class MurdersVisualizationComponent extends VisualizationComponent implem
     console.log(this.parsedData);
   }
 
-  createValuesArray(murders)
+  createValuesArray(murders: any)
   {
-    let values = [];
+    let values: any[] = [];
     this.selectedTitles.forEach(selectedTitle => {
       let title = this.titles.find((title) => title.label === selectedTitle);
-      values.push(murders[title.variable]+ title.suffix);
+      values.push(murders[title?.variable ?? '']+ title?.suffix);
     });
     return values;
   }
 
-  pushTotalMurderData(links, i, murders, labels)
+  pushTotalMurderData(links : any, i: any, murders : any, labels: any)
   {
     let values = this.createValuesArray(murders);
     for (var j = 1; j < values.length; j++)
@@ -167,7 +164,7 @@ export class MurdersVisualizationComponent extends VisualizationComponent implem
     return links;
   }
 
-  findObjectInArray(array, keys, values)
+  findObjectInArray(array :any, keys :any, values: any)
   {
     for (var i = 0; i < array.length; i++)
     {
@@ -185,7 +182,7 @@ export class MurdersVisualizationComponent extends VisualizationComponent implem
     return null;
   }
 
-  findUniqueItemsInArray(array, parameter)
+  findUniqueItemsInArray(array :any, parameter: any)
   {
     var flags = [], output = [];
     for (var i = 0; i < array.length; i++)

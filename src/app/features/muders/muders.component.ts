@@ -9,7 +9,7 @@ import { EpisodeService } from 'src/app/episode.service';
 })
 export class MudersComponent implements OnInit {
 
-  public episodes: Episode[];
+  public episodes: Episode[] = [];
 
   constructor(private episodeService: EpisodeService) { }
 

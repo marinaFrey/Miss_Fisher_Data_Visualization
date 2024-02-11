@@ -9,7 +9,7 @@ import { Episode } from '../../models/episode';
 })
 export class RomanceComponent implements OnInit {
 
-  public episodes: Episode[];
+  public episodes: Episode[] = [];
 
   nameCallingInfo = [
     {

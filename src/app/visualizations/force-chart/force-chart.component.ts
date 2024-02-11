@@ -10,12 +10,12 @@ import { ForceChart } from 'src/app/d3/force-chart';
 export class ForceChartComponent extends VisualizationComponent implements OnInit
 {
 
-  @Input() title: string;
-  @Input() svgName: string;
+  @Input() title!: string;
+  @Input() override svgName!: string;
   @Input() data: any;
   @Input() width: number = 500;
   @Input() height: number = 300;
-  forceChart: ForceChart;
+  forceChart!: ForceChart;
 
   dummy = {
     "nodes": [{
@@ -109,7 +109,7 @@ export class ForceChartComponent extends VisualizationComponent implements OnIni
 
   constructor() { super(); }
 
-  ngOnInit(): void
+  override ngOnInit(): void
   {
     this.create();
   }

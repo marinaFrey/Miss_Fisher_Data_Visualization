@@ -9,7 +9,7 @@ import { EpisodeService } from '../../episode.service';
 })
 export class TimelineComponent implements OnInit {
 
-  public episodes: Episode[];
+  public episodes: Episode[] = [];
 
   constructor(private episodeService: EpisodeService) { }
 

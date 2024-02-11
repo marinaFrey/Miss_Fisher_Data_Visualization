@@ -234,11 +234,12 @@ export class Visualization
     calculateHighestValue(data, vectorsName, vectorsName2)
     {
         var highestValue = 0;
+        var sum = 0
         for (var i = 0; i < data.length; i++)
         {
             for (var j = 0; j < data[i][vectorsName].length; j++)
             {
-                var sum = 0;
+                sum = 0;
                 if (vectorsName2)
                 {
                     for (var k = 0; k < data[i][vectorsName][j][vectorsName2].length; k++)

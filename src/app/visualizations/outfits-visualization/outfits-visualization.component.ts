@@ -12,9 +12,9 @@ import { BarChart } from 'src/app/d3/bar-chart';
 })
 export class OutfitsVisualizationComponent extends VisualizationComponent implements OnInit {
 
-  parsedData;
+  override parsedData!: any;
   selectAll = true;
-  barChart: BarChart;
+  barChart!: BarChart;
   tiesInfo = [
     { name: "Striped Tie", color: "#a2a2a2ff", hightlight: "#7e7e7eff", isShowing: true },
     { name: "Rhombus Filled Tie", color: "#58609eff", hightlight: "#3f4787ff", isShowing: true },
@@ -38,7 +38,7 @@ export class OutfitsVisualizationComponent extends VisualizationComponent implem
     super('#outfitsViz');
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.create();
   }
 
@@ -74,7 +74,7 @@ export class OutfitsVisualizationComponent extends VisualizationComponent implem
     }
   }
 
-  parseTieData(episodes, seasonSelection) {
+  parseTieData(episodes: any, seasonSelection: any) {
     let data = [];
     for (let i = 0; i < episodes.length; i++) {
       if ((seasonSelection === 0) || (episodes[i].season === seasonSelection)) {
@@ -84,7 +84,7 @@ export class OutfitsVisualizationComponent extends VisualizationComponent implem
     const parsedData = [];
     // tslint:disable-next-line:forin
     for (const tie in data) {
-      if(this.tiesInfo.find((tieInfo) => tieInfo.name == tie).isShowing == true)
+      if(this.tiesInfo?.find((tieInfo) => tieInfo.name == tie)?.isShowing == true)
       {
         parsedData.push({
           label: tie,
@@ -100,8 +100,8 @@ export class OutfitsVisualizationComponent extends VisualizationComponent implem
     return parsedData;
   }
 
-  parseTieCountData(data, episode) {
-    episode.neckties.forEach(tie => {
+  parseTieCountData(data: any, episode: any) {
+    episode.neckties.forEach((tie: { label: string | number; }) => {
       if (!data[tie.label]) {
         data[tie.label] = 0;
       }
@@ -112,7 +112,7 @@ export class OutfitsVisualizationComponent extends VisualizationComponent implem
   }
 
 
-  getInfo(name, infoVector, info)
+  getInfo(name: any, infoVector: any, info: any)
   {
     for (var i = 0; i < infoVector.length; i++)
     {
@@ -137,7 +137,7 @@ export class OutfitsVisualizationComponent extends VisualizationComponent implem
     return data;
   }
 
-  pushEpisodicCharacterData(data, i, id)
+  pushEpisodicCharacterData(data: any, i: number, id: any)
   {
     data[id] = { name: this.episodes[i].name, column: [] };
 

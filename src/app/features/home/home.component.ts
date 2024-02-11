@@ -9,7 +9,7 @@ import { Episode, Murder, EpisodeDate, Information } from '../../models/episode'
 })
 export class HomeComponent implements OnInit {
 
-  public episodes: Episode[];
+  public episodes: Episode[] = [];
 
   
 

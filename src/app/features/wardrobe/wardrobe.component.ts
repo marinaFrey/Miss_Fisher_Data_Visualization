@@ -9,7 +9,7 @@ import { EpisodeService } from '../../episode.service';
 })
 export class WardrobeComponent implements OnInit {
 
-  public episodes: Episode[];
+  public episodes: Episode[] = [];
 
   hatInfo = [
     {
